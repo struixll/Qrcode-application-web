@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Generer un code barre</title>
+</head>
+<body>
+    <form action="SumServlet" method="post">
+        <label for="nom">Code (12 chiffres requis) :</label>
+        <input type="number" id="nom" name="nom" required><br><br>
+
+        <label for="email">Libelle :</label>
+        <input type="text" id="email" name="email" required><br><br>
+
+        <button type="submit">Generer le code barre </button><br><br>
+        <svg id="codebarre" xmlns="https://www.w3.org/200/svg">></svg>
+    </form>
+</body>
+</html>
