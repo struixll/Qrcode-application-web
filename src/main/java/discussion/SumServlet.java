@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.krysalis.barcode4j.impl.datamatrix.DataMatrixBean;
 import org.krysalis.barcode4j.impl.upcean.EAN13Bean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 
@@ -22,13 +23,13 @@ public class SumServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nom = request.getParameter("nom"); // Code barre
-        String email = request.getParameter("email"); // Libellé
-        String message = "Le code du formulaire est " + nom + ". Le libellé est " + email + ".";
+        String code = request.getParameter("code");
+        String libelle = request.getParameter("libelle");
+        String message = "Le code du formulaire est " + code + ". Le libellé est " + libelle + ".";
 
 
-        EAN13Bean bean = new EAN13Bean();
-        final int dpi = 150;
+        DataMatrixBean bean = new DataMatrixBean();
+        final int dpi = 600;
 
         try {
             BitmapCanvasProvider canvas = new BitmapCanvasProvider(dpi, BufferedImage.TYPE_BYTE_BINARY, false, 0);
@@ -47,6 +48,7 @@ public class SumServlet extends HttpServlet {
             e.printStackTrace();
             System.err.println("Erreur lors de la génération du code-barre ou de l'écriture de l'image.");
         }
+    }
 
 
 
